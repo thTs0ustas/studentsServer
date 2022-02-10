@@ -36,7 +36,7 @@
 						<td><%=new Date(item.date_of_birth).toISOString().split("T")[0] %></td>
 
 						<td>
-							<a href="/update?id=<%=item.students_id%>">Edit</a>
+							<a href="/edit/<%=item.students_id%>">Edit</a>
 							<a href="/delete?id=<%=item.students_id%>">Delete</a>
 						</td>
 					</tr>

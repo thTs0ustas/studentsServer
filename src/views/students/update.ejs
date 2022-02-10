@@ -19,10 +19,12 @@
 		<div class="container">
 			<br />
 			<h3 class="h3"><%= message %></h3>
-			<form action="/create" method="POST">
+			<form action="/update" method="POST">
+				<input name="students_id" value="<%= student.students_id %>" hidden readonly/>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">First Name</span>
 					<input
+							value="<%= student.first_name %>"
 						name="first_name"
 						required
 						type="text"
@@ -35,6 +37,7 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon2">Last Name</span>
 					<input
+							value="<%= student.last_name %>"
 						name="last_name"
 						required
 						type="text"
@@ -47,8 +50,9 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon2">Date of Birth</span>
 					<input
+							value=<%= student.date_of_birth %>
 						type="date"
-						max="1995-01-01"
+
 						name="date_of_birth"
 						required
 						class="form-control"
@@ -57,7 +61,7 @@
 						aria-describedby="basic-addon2"
 					/>
 				</div>
-				<button class="btn btn-primary" type="submit">Login</button>
+				<button class="btn btn-primary" type="submit">Update</button>
 			</form>
 		</div>
 
