@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "nodemon src/server/server.js",
-		"sync": "node src/syncDatabase/sync.js"
+		"sync": "node src/associations/associations.js"
 	},
 	"author": "Thansos Tsoustas",
 	"license": "ISC",

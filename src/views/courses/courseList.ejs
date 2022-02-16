@@ -19,9 +19,11 @@
 				<thead>
 					<tr>
 						<th scope="col">ID</th>
-						<th scope="col">First Name</th>
-						<th scope="col">Last Name</th>
-						<th scope="col">Date Of Birth</th>
+						<th scope="col">Title</th>
+						<th scope="col">Stream</th>
+						<th scope="col">Type</th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
 
 						<th scope="col">Actions</th>
 					</tr>
@@ -29,11 +31,12 @@
 				<tbody>
 					<%list.map((item)=> {%>
 					<tr>
-						<td><%=item.students_id%></td>
-						<td><%=item.first_name %></td>
-						<td><%=item.last_name %></td>
-
-						<td><%=new Date(item.date_of_birth).toISOString().split("T")[0] %></td>
+						<td><%=item.id%></td>
+						<td><%=item.title %></td>
+						<td><%=item.stream %></td>
+						<td><%=item.type %></td>
+						<td><%=new Date(item.start_date).toISOString().split("T")[0] %></td>
+						<td><%=new Date(item.end_date).toISOString().split("T")[0] %></td>
 
 						<td>
 							<a href="/edit/<%=item.students_id%>">Edit</a>

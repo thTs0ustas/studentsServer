@@ -1,28 +1,28 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database/database');
+const sequelize = require("../database");
+const { DataTypes } = require("sequelize");
+const Course = require("./courses.model");
+const StudentToCourse = require("./studentsToCourse.model");
 
-const Students = sequelize.define(
-	'students',
-	{
-		students_id: {
-			type: DataTypes.INTEGER,
-			autoIncrement: true,
-			primaryKey: true,
-		},
-		first_name: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		last_name: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		date_of_birth: {
-			type: DataTypes.DATE,
-			allowNull: false,
-		},
-	},
-	{ timestamps: false }
-);
+const Student = sequelize.define("student", {
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  date_of_birth: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+});
 
-module.exports = Students;
+Student.belongsToMany(Course, {
+  through: StudentToCourse,
+});
+Course.belongsToMany(Student, {
+  through: StudentToCourse,
+});
+// Student.sync().then();
+module.exports = Student;

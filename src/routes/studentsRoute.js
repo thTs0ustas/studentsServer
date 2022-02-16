@@ -1,16 +1,19 @@
 const Students = require("../models/student.model");
+const Course = require("../models/courses.model");
+const StudentToCourse = require("../models/studentsToCourse.model");
+
 var express = require("express");
 var router = express.Router();
 
 router.get("/", async function (req, res) {
-  let students = await Students.sync({ alter: false })
-    .then(() => Students.findAll())
-    .then((data) => data.map(({ dataValues }) => dataValues));
+  const students = await Students.sync({ alter: false }).then(() =>
+    Students.findAll({ include: [Course] })
+  );
 
   res.render("students/list", {
-    title: "Express 002 - students page",
-
-    list: students,
+    title: "Express 002 - Customers delete page",
+    // list: getCustomers()
+    message: students,
   });
 });
 
@@ -35,6 +38,7 @@ router.get("/create", async function (req, res) {
     message: `Add new student`,
   });
 });
+
 router.post("/create", async (req, res) => {
   await Students.sync({ alter: true }).then(() => {
     return Students.create({
@@ -45,6 +49,17 @@ router.post("/create", async (req, res) => {
   });
 
   res.redirect("/");
+});
+
+router.post("/add/:id", async (req, res) => {
+  const student = await Students.sync().then(() =>
+    Students.findByPk(req.params.id)
+  );
+  const course = await Course.sync().then(() => Course.findByPk(req.params.id));
+  console.log("Student", student);
+  // await student.addCourse(course);
+
+  res.send("Course added to student");
 });
 
 router.get("/edit/:id", async function (req, res) {

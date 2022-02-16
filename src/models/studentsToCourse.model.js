@@ -1,27 +1,25 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../database/database');
+const sequelize = require("../database");
 
-const StudentsToCourse = sequelize.define(
-	'students_courses_connections',
-	{
-		id: {
-			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true,
-			allowNull: false,
-		},
-		fee: {
-			type: DataTypes.INTEGER,
-		},
-		course_id: {
-			type: DataTypes.INTEGER,
-		},
-		student_id: {
-			type: DataTypes.INTEGER,
-		},
-	},
+const { DataTypes } = require("sequelize");
 
-	{ timestamps: false }
-);
-
-module.exports = StudentsToCourse;
+const StudentToCourse = sequelize.define("studentToCourse", {
+  fee: {
+    type: DataTypes.INTEGER,
+  },
+  studentId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "Student",
+      key: "id",
+    },
+  },
+  courseId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: "Course",
+      key: "id",
+    },
+  },
+});
+// StudentToCourse.sync().then();
+module.exports = StudentToCourse;
