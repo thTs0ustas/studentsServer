@@ -1,25 +1,25 @@
-const sequelize = require("../database");
+const sequelize = require('../database');
 
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
-const StudentToCourse = sequelize.define("studentToCourse", {
-  fee: {
-    type: DataTypes.INTEGER,
-  },
-  studentId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "Student",
-      key: "id",
-    },
-  },
-  courseId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "Course",
-      key: "id",
-    },
-  },
+const StudentToCourse = sequelize.define('studentToCourse', {
+	fee: {
+		type: DataTypes.INTEGER,
+	},
+	studentId: {
+		type: DataTypes.INTEGER,
+		references: {
+			model: 'Student',
+			key: 'id',
+		},
+	},
+	courseId: {
+		type: DataTypes.INTEGER,
+		references: {
+			model: 'Course',
+			key: 'id',
+		},
+	},
 });
-// StudentToCourse.sync().then();
+StudentToCourse.sync().then();
 module.exports = StudentToCourse;

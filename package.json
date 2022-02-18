@@ -11,6 +11,7 @@
 	"author": "Thansos Tsoustas",
 	"license": "ISC",
 	"dependencies": {
+		"cors": "^2.8.5",
 		"ejs": "^3.1.6",
 		"express": "^4.17.2",
 		"morgan": "~1.9.1",
